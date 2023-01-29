@@ -84,6 +84,10 @@ class InvidiousAPIClient:
 
     def parse_response(self, response):
         data = response.json()
+        
+        # If a channel is opened, the videos are packaged in a dict entry "videos"
+        if "videos" in data:
+            data = data["videos"]
 
         for item in data:
             if item["type"] == "video":
